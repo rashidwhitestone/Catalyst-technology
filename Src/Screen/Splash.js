@@ -7,7 +7,7 @@ import CarouselActiveBar from '../component/CartItem/CarouselActiveBar';
 import CarouselComponent from '../component/CarouselComponent';
 
 
-const Splash = () => {
+const Splash = ({ navigation }) => {
     const [activeSlide, setActiveSlide] = useState(0);
     const ScanData = [
         {
@@ -57,7 +57,7 @@ const Splash = () => {
                     onSnapToItem={(index) => setActiveSlide(index)}
                 />
 
-                <CarouselActiveBar item={ScanData} activeSlide={activeSlide} />
+                <CarouselActiveBar item={ScanData} activeSlide={activeSlide} navigation={navigation} />
 
 
 

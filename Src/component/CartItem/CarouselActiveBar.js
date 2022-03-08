@@ -4,28 +4,49 @@ import Location from '../../assest/svg/map-pin';
 import { DP } from "../../globle/constants";
 // import HomeScreen from "../../screens/OTP/Home/HomeScreen";
 // import Locate from "../../screen/Locat/Locate";
-import LeftArrow from '../../assest/svg/arrow';
 import Add from '../../assest/svg/add';
-function CarouselActiveBar({ item, activeSlide }) {
+import ArrowR from '../../assest/svg/arrow-right';
+function CarouselActiveBar({ item, activeSlide, navigation }) {
     const Color = ["#2d9cdb"]
     const bgcolor = ["#2d9cdb14", "f2994a14", "27ae6014", "#fa5d514"]
     return (
-        <View style={styles.ActiveSlideView}>
+        <>
+            <View style={styles.ActiveSlideView}>
+                {
+                    item.map((item, index) => {
+                        return (
+                            <>
+                                {
+                                    index == activeSlide ?
+                                        <View style={styles.currentActiveSlideStyle}></View>
+                                        :
+
+                                        <View style={styles.activeSlideStyle}></View>
+                                }
+
+                            </>
+
+                        )
+
+                    })
+                }
+
+
+            </View >
             {
-                item.map((item, index) => {
-                    return (
-                        index == activeSlide ?
-                            <View style={styles.currentActiveSlideStyle}></View>
-                            :
+                activeSlide == 4 &&
+                < TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => { navigation.navigate("Home") }}
+                    style={{
+                        height: DP(40), width: DP(40), backgroundColor: '#2d9cdb', borderRadius: DP(20),
+                        justifyContent: 'center', alignItems: 'center', alignSelf: 'flex-end', marginTop: DP(-28)
+                    }}>
+                    <ArrowR />
 
-                            <View style={styles.activeSlideStyle}></View>
-
-                    )
-
-                })
+                </TouchableOpacity>
             }
-
-        </View>
+        </>
 
     );
 
@@ -48,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#80808040',
         // backgroundColor: '#fff',
         height: DP(12),
-        marginHorizontal: DP(25),
+        marginHorizontal: DP(10),
         width: DP(12),
         borderRadius: DP(12)
     },
@@ -56,7 +77,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#2d9cdb",
         height: DP(14),
         width: DP(14),
-        marginHorizontal: DP(25),
+        marginHorizontal: DP(10),
         borderRadius: DP(8),
     },
 })
